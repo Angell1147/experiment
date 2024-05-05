@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income and Expense Tracker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(20,20,41);
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative; 
+  }
+  .asd {
+            padding: 5px;
+            margin-top: 0px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999; /* Ensuring the navigation is above other elements */
+        }
+
+        .asd ul {
+            overflow: auto;
+        }
+
+        .asd li {
+            list-style: none;
+            margin: 5px 20px;
+            display: inline-block;
+        }
+
+        .asd li a {
+            padding: 1px 5px 1px 0px;
+            color: white;
+            text-decoration: none;
+            font-size: 25px;
+        }
+
+        .fgh {
+            cursor: pointer;
+        }
+
+        .fgh:hover {
+            color: #418da3;
+        }
+
+        .rgh {
+            float: right;
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 999; /* Ensuring the logo is above other elements */
+        }
+        
+  .box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    width: 200px;
+    text-align: center;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    position: relative;
+  }
+  .box:hover {
+    background-color: #f0f0f0;
+  }
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    border-radius: 10px;
+  }
+  .popup h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+  }
+  #addIncome {
+    animation: throttleDown 0.5s ease forwards;
+  }
+
+  #addExpense {
+    animation: throttleUp 0.9s ease forwards;
+  }
+  .popup input[type="text"],
+  .popup input[type="number"],
+  .popup select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  .mmm{
+    text-align: center;
+  }
+  @keyframes throttleDown {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes throttleUp {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  .popup button {
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  .popup button:hover {
+    background-color: #45a049;
+  }
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  .reset-btn {
+    margin-top: 10px;
+    padding: 15px 30px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  .reset-btn:hover {
+    background-color: #d32f2f;
+  }
+
+  /* ============= Experiment CSS ============= */
+  #view-payments-btn {
+    width: 49%;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    background-color:rgb(20,20,41);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;margin-right: 20px;
+}
+
+#view-payments-btn:hover {
+    background-color: rgb(20,20,41);
+}
+
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="asd">
+        <ul>
+            <li><a href="home.html" class="fgh">HOME</a></li>
+            <li><a href="stats.html" class="fgh">STATS</a></li>
+            <li><a href="upcoming.html" class="fgh">UPCOMING PAYMENTS</a></li>
+            <li><a href="#" class="fgh">TOTAL</a></li>
+            <li><a href="aboutUs.html" class="fgh">ABOUT US</a></li>
+        </ul><a href="index.html">
+        <div class="rgh"><img src="Screenshot 2024-04-19 120854.png" length="100" width="100"></div></a>
+    </div>
+</header>
+
+<div class="container">
+  <div class="box" id="addIncome">ADD INCOME</div>
+  <div class="box" id="addExpense">ADD EXPENSE</div>
+  <div class="box" id="view-payments-btn">👀 View Payments</div>
+
+</div>
+
+<div class="popup" id="incomePopup">
+  <span class="close" onclick="closePopup('incomePopup')">✖</span>
+  <h2 class="mmm">ADD INCOME</h2>
+  <input type="text" id="incomeDescription" placeholder="Description"><br>
+  <input type="number" id="incomeAmount" placeholder="Amount"><br>
+  
+  <select id="incomeCurrency">
+    <option value="Rupee">RUPEE</option>
+    <option value="USD">USD</option>
+    <option value="EUR">EUR</option>
+    <option value="GBP">GBP</option>
+    <option value="JPY">JPY</option>
+  </select><br>
+  <button onclick="addIncomeValue()">Add</button>
+  <button class="reset-btn" onclick="resetForm('incomePopup')">Reset</button>
+</div>
+
+<div class="popup" id="expensePopup">
+     <h2 class="mmm">ADD EXPENSE</h2>
+     <span class="close" onclick="closePopup('expensePopup')">✖</span>
+      <div class="form-container" id="form-container">
+        <form id="todo-form">
+        <input type="text" id="expenseDescription" placeholder="Description"><br>
+        <input type="number" id="expenseAmount" placeholder="Amount"><br>
+        <select id="expenseCategory">
+            <option value="Food">FOOD</option>
+            <option value="Transportation">TRANSPORT</option>
+            <option value="Entertainment">BEAUTY</option>
+            <option value="Utilities">HEALTH</option>
+            <option value="Education">EDUCATION</option>
+            <option value="Other">OTHERS</option>
+        </select><br>
+        <select id="expenseCurrency">
+            <option value="Rupee">RUPEE</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+        </select><br>
+        <button type="submit" onclick="addExpense()">Add</button>
+        <button class="reset-btn" type="reset" onclick="resetForm('expensePopup')">Reset</button>
+   </form>
+</div>
+<ul id="task-list" style="display: none;"></ul>
+</div>
+
+<script src="experiment.js"></script>
+</body>
+</html>
