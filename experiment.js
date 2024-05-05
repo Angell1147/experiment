@@ -157,9 +157,8 @@ function addTask(expenseDescription, expenseAmount, expenseCurrency, expenseCate
 }
 
 // Function to handle form submission
-document.getElementById('todo-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    e.stopPropagation(); 
+document.getElementById('expenseForm').addEventListener('submit', function(e) {
+   
 // Stop propagation to prevent hiding the form
     const taskInput = document.getElementById('expenseDescription');
     const amountInput = document.getElementById('expenseAmount');
@@ -208,12 +207,10 @@ document.getElementById('expensePopup').addEventListener('click', function(e) {
 });
 
 // Show/hide task list when "View Payments" button is clicked
-document.getElementById('view-payments-btn').addEventListener('click', function(e) {
-    const taskList = document.getElementById('task-list');
-    if (taskList.children.length === 0) {
-        // If task list is empty, display "No data available"
-        taskList.innerHTML = '<li>No data available</li>';
-    }
-    taskList.style.display = taskList.style.display === 'none' ? 'block' : 'none';
-});
 
+    document.getElementById('view-payments-btn').addEventListener('click', function() {
+        console.log("Button clicked"); // Add this line
+        const taskList = document.getElementById('task-list');
+        taskList.style.display = taskList.style.display === 'none' ? 'block' : 'none';
+    });
+    
