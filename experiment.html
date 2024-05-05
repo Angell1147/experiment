@@ -234,10 +234,10 @@
 </div>
 
 <div class="popup" id="expensePopup">
+    <form id="expenseForm">
      <h2 class="mmm">ADD EXPENSE</h2>
      <span class="close" onclick="closePopup('expensePopup')">✖</span>
-      <div class="form-container" id="form-container">
-        <form id="todo-form">
+      <class="form-container" id="form-container">
         <input type="text" id="expenseDescription" placeholder="Description"><br>
         <input type="number" id="expenseAmount" placeholder="Amount"><br>
         <select id="expenseCategory">
@@ -257,8 +257,8 @@
         </select><br>
         <button type="submit" onclick="addExpense()">Add</button>
         <button class="reset-btn" type="reset" onclick="resetForm('expensePopup')">Reset</button>
-   </form>
-</div>
+    </form>
+    </div>
 <ul id="task-list" style="display: none;"></ul>
 </div>
 
